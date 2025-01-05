@@ -1,13 +1,16 @@
 ![banner](banner.png?raw=true)
 
+## New Additions
+- Added `sicher` theme inspired by [this theme](https://github.com/julianbrost/grub-theme-dieses-system-ist-sicher) wich is based on the ["Dieses System ist sicher" sticker](https://github.com/SFTtech/sticker/tree/master/sicher)
+
 ## Installation:
 Usage:  `sudo ./install.sh [OPTIONS...]`
 ```
-  -t, --theme                 theme variant(s)          [tela|vimix|stylish|whitesur]       (default is tela)
+  -t, --theme                 theme variant(s)          [tela|vimix|stylish|whitesur|sicher]       (default is tela)
   -i, --icon                  icon variant(s)           [color|white|whitesur]              (default is color)
   -s, --screen                screen display variant(s) [1080p|2k|4k|ultrawide|ultrawide2k] (default is 1080p)
   -c, --custom-resolution     set custom resolution     (e.g., 1600x900)                    (disabled in default)
-  -r, --remove                remove theme              [tela|vimix|stylish|whitesur]       (must add theme name option, default is tela)
+  -r, --remove                remove theme              [tela|vimix|stylish|whitesur|sicher]       (must add theme name option, default is tela)
 
   -b, --boot                  install theme into '/boot/grub' or '/boot/grub2'
   -g, --generate              do not install but generate theme into chosen directory       (must add your directory)
