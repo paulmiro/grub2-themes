@@ -74,7 +74,8 @@
               fi;
             '';
           };
-          resolution = if cfg.customResolution != null
+          resolution =
+            if cfg.customResolution != null
             then cfg.customResolution
             else resolutions."${cfg.screen}";
         in
@@ -92,7 +93,7 @@
               theme = mkOption {
                 default = "tela";
                 example = "tela";
-                type = types.enum [ "tela" "vimix" "stylish" "whitesur" ];
+                type = types.enum [ "tela" "vimix" "stylish" "whitesur" "sicher" ];
                 description = ''
                   The theme to use for grub2.
                 '';
