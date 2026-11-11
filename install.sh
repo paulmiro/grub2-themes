@@ -13,7 +13,7 @@ REO_DIR="$(cd $(dirname $0) && pwd)"
 
 THEME_VARIANTS=('tela' 'vimix' 'stylish' 'whitesur' 'sicher')
 ICON_VARIANTS=('color' 'white' 'whitesur')
-SCREEN_VARIANTS=('1080p' '2k' '4k' 'ultrawide' 'ultrawide2k')
+SCREEN_VARIANTS=('1080p' '2k' '4k' 'ultrawide' 'ultrawide2k' 'tall2.8k')
 custom_resolution=""
 
 #################################
@@ -65,7 +65,7 @@ Usage: $0 [OPTION]...
 OPTIONS:
   -t, --theme                 theme variant(s)          [tela|vimix|stylish|whitesur|sicher]       (default is tela)
   -i, --icon                  icon variant(s)           [color|white|whitesur]              (default is color)
-  -s, --screen                screen display variant(s) [1080p|2k|4k|ultrawide|ultrawide2k] (default is 1080p)
+  -s, --screen                screen display variant(s) [1080p|2k|4k|ultrawide|ultrawide2k|tall2.8k] (default is 1080p)
   -c, --custom-resolution     set custom resolution     (e.g., 1600x900)                    (disabled in default)
   -r, --remove                remove theme              [tela|vimix|stylish|whitesur|sicher]       (must add theme name option, default is tela)
 
@@ -145,7 +145,7 @@ generate() {
     cp -a --no-preserve=ownership "${REO_DIR}/assets/assets-${icon}/icons-1080p" "${THEME_DIR}/${theme}/icons"
     cp -a --no-preserve=ownership "${REO_DIR}/assets/assets-select/select-1080p/"*.png "${THEME_DIR}/${theme}"
     cp -a --no-preserve=ownership "${REO_DIR}/assets/info-1080p.png" "${THEME_DIR}/${theme}/info.png"
-  elif [[ ${screen} == 'ultrawide2k' ]]; then
+  elif [[ ${screen} == 'ultrawide2k' || ${screen} == 'tall2.8k' ]]; then
     cp -a --no-preserve=ownership "${REO_DIR}/assets/assets-${icon}/icons-2k" "${THEME_DIR}/${theme}/icons"
     cp -a --no-preserve=ownership "${REO_DIR}/assets/assets-select/select-2k/"*.png "${THEME_DIR}/${theme}"
     cp -a --no-preserve=ownership "${REO_DIR}/assets/info-2k.png" "${THEME_DIR}/${theme}/info.png"
@@ -233,6 +233,8 @@ install() {
       gfxmode="GRUB_GFXMODE=2560x1440,auto"
     elif [[ ${screen} == 'ultrawide2k' ]]; then
       gfxmode="GRUB_GFXMODE=3440x1440,auto"
+    elif [[ ${screen} == 'tall2.8k' ]]; then
+      gfxmode="GRUB_GFXMODE=2880x1920,auto"
     fi
 
     if grep "GRUB_GFXMODE=" /etc/default/grub 2>&1 >/dev/null; then
@@ -363,13 +365,15 @@ run_dialog() {
       2 "1080p ultrawide (2560x1080)" off  \
       3 "2k (2560x1440)" off \
       4 "4k (3840x2160)" off \
-      5 "1440p ultrawide (3440x1440)" off --output-fd 1 )
+      5 "1440p ultrawide (3440x1440)" off \
+      6 "tall 2.8k (2880x1920)" off --output-fd 1 )
       case "$tui" in
         1) screen="1080p"       ;;
         2) screen="ultrawide"   ;;
         3) screen="2k"          ;;
         4) screen="4k"          ;;
         5) screen="ultrawide2k" ;;
+        6) screen="tall2.8k"    ;;
         *) operation_canceled   ;;
      esac
 
@@ -686,6 +690,10 @@ while [[ $# -gt 0 ]]; do
             ;;
           ultrawide2k)
             screens+=("${SCREEN_VARIANTS[4]}")
+            shift
+            ;;
+          tall2.8k)
+            screens+=("${SCREEN_VARIANTS[5]}")
             shift
             ;;
           -*)

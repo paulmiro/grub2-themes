@@ -20,6 +20,7 @@
             "2k" = "2560x1440";
             "4k" = "3840x2160";
             "ultrawide2k" = "3440x1440";
+            "tall2.8k" = "2880x1920";
           }."${cfg.screenSize}";
         splashImage =
           if cfg.custom.splashImage != null
@@ -111,7 +112,7 @@
             screenSize = lib.mkOption {
               default = "1080p";
               example = "4k";
-              type = lib.types.enum [ "1080p" "2k" "4k" "ultrawide" "ultrawide2k" ];
+              type = lib.types.enum [ "1080p" "2k" "4k" "ultrawide" "ultrawide2k" "tall2.8k" ];
               description = ''
                 The screen resolution to use for grub2.
               '';

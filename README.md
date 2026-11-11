@@ -96,6 +96,7 @@ After that, you can configure the theme as shown below. In this example it is in
    - 2560x1440 >> 2k
    - 3440x1440 >> ultrawide2k
    - 3840x2160 >> 4k
+   - 2880x1920 >> tall2.8k (only the sicher theme)
  - Place your custom background inside the root of the project, and name it `background.jpg`
  - Run the installer like normal, but with -s `[YOUR_RESOLUTION]` and -t `[THEME]` and -i `[ICON]`
    - Make sure to replace `[YOUR_RESOLUTION]` with your resolution and `[THEME]` with the theme
